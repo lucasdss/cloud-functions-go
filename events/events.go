@@ -46,10 +46,17 @@ func (t *JSTime) UnmarshalJSON(b []byte) (err error) {
 // EventContext holds the data associated with the event that triggered the
 // execution of the function along with metadata of the event itself.
 type EventContext struct {
-	EventID   string `json:"eventId"`
-	Timestamp JSTime `json:"timestamp"`
-	EventType string `json:"eventType"`
-	Resource  string `json:"resource"`
+	EventID   string   `json:"eventId"`
+	Timestamp JSTime   `json:"timestamp"`
+	EventType string   `json:"eventType"`
+	Resource  Resource `json:"resource"`
+}
+
+// Resource type contains details about the pub/sub
+type Resource struct {
+	Name    string `json:"name"`
+	Service string `json:"service"`
+	Type    string `json:"type"`
 }
 
 // Event is the basic data structure passed to functions by non-HTTP
